@@ -24,6 +24,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loginVisible: false,
       voteModal: false,
       userAccount: null,
       contractAccount: null,
@@ -60,6 +61,55 @@ class App extends React.Component {
     return {
       left: <div style={{marginRight:100}}> </div>,
     };
+  }
+
+  showLogin = () => {
+    this.setState({
+      loginVisible: true,
+    });
+  };
+
+  hideLogin = () => {
+    this.setState({
+      loginVisible: false,
+    });
+  };
+
+  loginForm = (login) => {
+    return (
+      <div className='verticle-central-middle'>
+        <Input
+          placeholder="Email"
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          style={{marginTop: 30, marginBottom: 25}}
+        />
+        <Input.Password 
+          placeholder="Password" 
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          style={{marginBottom: 20}}
+        />  
+        <Divider />
+        {login ? (<Button 
+          key="submit" 
+          type="primary" 
+          size="large" 
+          style={{width: "100%", margin: 0}} 
+          icon={ <RightOutlined /> } 
+          onClick={this.hideLogin}
+          >
+            Login
+        </Button>) : (
+        <Button 
+          key="submit" 
+          type="primary" 
+          size="large" 
+          style={{width: "100%", margin: 0}} 
+          onClick={this.hideLogin}
+          icon={ <RightOutlined /> } >
+            Signup
+        </Button>)}
+      </div>
+    );
   }
 
   loadBlockchainData= async() => {
@@ -189,7 +239,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {userAccount, voteContract, isUpdatedVotes, isUpdated} = this.state;
+    const {loginVisible, userAccount, voteContract, isUpdatedVotes, isUpdated} = this.state;
     
     return (
       <div>
@@ -206,6 +256,27 @@ class App extends React.Component {
               <MyDog isUpdated={isUpdated} isUpdatedVotes={isUpdatedVotes} userAccount={userAccount}/>
           </TabPane>
         </Tabs>
+        <Modal title={null}
+          visible={loginVisible} 
+          width={360}
+          closable={false}
+          footer={null}>
+          <CloseOutlined style={{float: 'right'}} onClick={this.hideLogin} />
+          <div className='verticle-central-middle'>
+            <Avatar size='large' src={Icon} style={{height: 80, width: 80, display: 'flex', marginBottom: 0}} />
+            <a className='website-title' style={{display: 'flex', fontSize: 30, marginTop: 0, marginBottom: 10}}>PuppyVote</a>
+          </div>
+          <div style={{textAlign: 'center'}}>
+            <Tabs defaultActiveKey="1" onChange={this.callback} tabBarExtraContent={this.offSet()}>
+              <TabPane tab="Login" key="1">
+                {this.loginForm(true)}
+              </TabPane>
+              <TabPane tab="Signup" key="2">
+                {this.loginForm(false)}
+              </TabPane>
+            </Tabs>
+          </div>
+        </Modal>  
         <Modal title="Buy Vote" visible={this.state.voteModal} onOk={this.handleVoteOk} onCancel={this.handleVoteCancel}>
           <p>How many votes do you want to buy? </p>
           <p>Each vote costs 0.1 Ether.</p>
