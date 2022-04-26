@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.icon-container {
+  height: 20%;
+  background-color: #0000ff12;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.2%;
+  margin-right: 4%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.verticle-central-middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.website-title{
+  font-size: larger;
+  font-weight: bold;
+}
+
+th.table-replaceColor {
+  background-color: #A5C9FF;
+}
+
+.App-header {
+  background-color: #F5f5f5;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-title{
+  font-size: xx-large;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.dog-card-container {
+  margin-left: 13%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dog-card-item {
+  display: inline;
+  width: 31%;
+  margin: 10;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
